@@ -17,6 +17,9 @@ from imaginairy.utils import get_device
 
 logger = logging.getLogger(__name__)
 
+# Mine
+from imaginairy.progress import ProgressReporter
+
 
 class PLMSSchedule:
     def __init__(
@@ -139,7 +142,8 @@ class PLMSSampler:
         total_steps = timesteps.shape[0]
         logger.debug(f"Running PLMS Sampling with {total_steps} timesteps")
 
-        iterator = tqdm(time_range, desc="    PLMS Sampler", total=total_steps)
+        # iterator = tqdm(time_range, desc="    PLMS Sampler", total=total_steps)
+        iterator = ProgressReporter(time_range, total_steps)
         old_eps = []
         img = initial_latent
 
