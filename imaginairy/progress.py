@@ -17,6 +17,7 @@ class ProgressReporter:
         if self.i < self.max_length - 1:
             self.i += 1
             try:
+                logger.info("{0}/{1}".format(self.i + 1, self.max_length))
                 logger.progress("{0}/{1}".format(self.i + 1, self.max_length))
             except AttributeError:
                 logger.warning("Logger initialized incorrectly?")
